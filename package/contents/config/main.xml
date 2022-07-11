@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+    <group name="Preferences">
+        <entry name="refreshInterval" type="Int">
+            <default>480000</default>
+        </entry>
+    </group>
+    <group name="Configuration">
+        <entry name="uid" type="String">
+            <default>100461712</default>
+        </entry>
+        <entry name="server" type="Enum">
+            <label>0 = cn_gf01 官服, 1 = cn_qd01 B服</label>
+            <default>0</default>
+        </entry>
+
+        <entry name="cookie" type="String">
+            <default>Hello World</default>
+        </entry>
+    </group>
+</kcfg>
