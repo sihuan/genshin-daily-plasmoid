@@ -32,7 +32,7 @@ Item {
             Kirigami.FormData.label: "服务器："
             Layout.fillWidth: true
             Layout.minimumWidth: Kirigami.Units.gridUnit * 14
-            model: ["天空岛", "世界树"]
+            model: ["天空岛", "世界树","Asia","America","Europe","TW,HK,MO"]
         }
 
         Item {
@@ -44,6 +44,8 @@ Item {
             Kirigami.FormData.label: "Cookie："
             Layout.maximumWidth: Kirigami.Units.gridUnit * 14
             height: Kirigami.Units.gridUnit * 6
+            // passwordCharacter: "*"
+            // echoMode: TextField.Password
             wrapMode: Text.WordWrap 
         }
 

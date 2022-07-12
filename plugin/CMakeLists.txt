@@ -1,6 +1,16 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"plasma_applet_org.kde.plasma.genshindaily\")
 
-add_library(genshindailyplugin SHARED genshindailyplugin.cpp)
+set(genshindaily_SRCS
+    genshindailyplugin.cpp
+    genshindaily.cpp
+)
+
+set(genshindaily_HEADERS
+    genshindailyplugin.h
+    genshindaily.h
+)
+
+add_library(genshindailyplugin SHARED ${genshindaily_SRCS})
 
 target_link_libraries(genshindailyplugin
     KF5::I18n

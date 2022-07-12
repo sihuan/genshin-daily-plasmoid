@@ -3,8 +3,13 @@
     <kcfgfile name=""/>
     <group name="Preferences">
         <entry name="refreshInterval" type="Int">
-            <default>480000</default>
+            <default>8</default>
         </entry>
+        <entry name="full" type="Enum">
+            <label>0 = 便笺, 1 = 胡桃</label>
+            <default>0</default>
+        </entry>
+
     </group>
     <group name="Configuration">
         <entry name="uid" type="String">

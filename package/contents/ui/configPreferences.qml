@@ -11,12 +11,22 @@ Kirigami.FormLayout {
     anchors.right: parent.right
 
     property alias cfg_refreshInterval: refreshInterval.value
+    property alias cfg_full: full.currentIndex
+
 
     SpinBox {
         id: refreshInterval
-        Kirigami.FormData.label: "刷新间隔 / ms"
-        from: 10000
-        to: 120 * 60 * 1000
-        stepSize: 1000
+        Kirigami.FormData.label: "刷新间隔 (分钟)"
+        from: 1
+        to: 120
+        stepSize: 1
+    }
+
+    ComboBox {
+        id: full
+        Kirigami.FormData.label: "样式："
+        Layout.fillWidth: true
+        Layout.minimumWidth: Kirigami.Units.gridUnit * 14
+        model: ["便笺", "胡桃"]
     }
 }

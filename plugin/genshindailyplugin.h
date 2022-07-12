@@ -8,6 +8,8 @@
 
 #include <QQmlExtensionPlugin>
 
+#include <genshindaily.h>
+
 class genshinDailyPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
