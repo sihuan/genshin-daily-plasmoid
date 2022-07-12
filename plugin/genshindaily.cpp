@@ -51,8 +51,8 @@ void GenshinDaily::refresh() {
         });
 	QNetworkRequest* request = new QNetworkRequest();
 	request->setUrl(QUrl((isCNServer() ? apiCN : apiGlobal) + "?" + getQuery()));
-	request->setRawHeader("x-rpc-app_version","2.26.1");
-	request->setRawHeader("x-rpc-client_type","5");
+	request->setRawHeader("x-rpc-app_version",  isCNServer() ? "2.26.1" : "2.9.1");
+	request->setRawHeader("x-rpc-client_type", isCNServer() ? "5" : "2");
 	request->setRawHeader("DS",getDS().toUtf8());
 	request->setRawHeader("Cookie",this->m_cookie.toUtf8());
 
