@@ -27,9 +27,9 @@ public:
     enum Server {
     	CN,
     	BL,
+    	Asia,
     	NA,
     	EU,
-    	Asia,
     	SAR,
     	UNSET
     };
