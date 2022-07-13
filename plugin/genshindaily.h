@@ -52,6 +52,11 @@ public:
 	Q_PROPERTY(int remainResinDiscountNum READ remainResinDiscountNum NOTIFY remainResinDiscountNumChanged STORED false)
 	Q_PROPERTY(bool transformerObtained READ transformerObtained NOTIFY transformerObtainedChanged STORED false)
     Q_PROPERTY(int transformerRecoveryTime READ transformerRecoveryTime NOTIFY transformerRecoveryTimeChanged STORED false)
+	Q_PROPERTY(int currentExpeditionNum READ currentExpeditionNum NOTIFY currentExpeditionNumChanged STORED false)
+	Q_PROPERTY(int maxExpeditionNum READ maxExpeditionNum NOTIFY maxExpeditionNumChanged STORED false)
+    Q_PROPERTY(QVariantList expeditions READ expeditions NOTIFY expeditionsChanged STORED false)
+
+	Q_PROPERTY(int updateTime READ updateTime NOTIFY updateTimeChanged STORED false)
 
 	int currentResin() const { return this->m_currentResin; }
 	int resinRecoveryTime() const { return this->m_resinRecoveryTime; }
@@ -63,6 +68,11 @@ public:
     int remainResinDiscountNum() const { return this->m_remainResinDiscountNum; }
     bool transformerObtained() const { return this->m_transformerObtained; }
     int transformerRecoveryTime() const { return this->m_transformerRecoveryTime; }
+	int currentExpeditionNum() const { return this->m_currentExpeditionNum; }
+	int maxExpeditionNum() const { return this->m_maxExpeditionNum; }
+	QVariantList expeditions() const { return this->m_expeditions; }
+
+	int updateTime() const { return this->m_updateTime; }
 
 
 signals:
@@ -80,6 +90,11 @@ signals:
     void remainResinDiscountNumChanged(int newRemainResinDiscountNum);
     void transformerObtainedChanged(bool newTransformerObtained);
     void transformerRecoveryTimeChanged(int newTransformerRecoveryTime);
+	void currentExpeditionNumChanged(int newCurrentExpeditionNum);
+	void maxExpeditionNumChanged(int newMaxExpeditionNum);
+	void expeditionsChanged(QVariant newExpedition);
+
+	void updateTimeChanged(int newUpdateTime);
 
 
 public slots:
@@ -103,6 +118,11 @@ private:
     int m_remainResinDiscountNum;
     bool m_transformerObtained;
     int m_transformerRecoveryTime;
+	int m_currentExpeditionNum;
+	int m_maxExpeditionNum;
+	QVariantList m_expeditions;
+
+	int m_updateTime;
 
 	QString getDS();
 	void parseResponseJSON(QByteArray &response);

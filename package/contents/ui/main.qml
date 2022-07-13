@@ -50,7 +50,8 @@ Item {
 		}
 	}
 
-    Plasmoid.fullRepresentation: GenshinFull {
+    Plasmoid.fullRepresentation: GenshinHutao {
+        update_time: genshin.updateTime
         resin_recovery_time: genshin.resinRecoveryTime
         current_resin: genshin.currentResin
         current_home_coin: genshin.currentHomeCoin
@@ -59,6 +60,9 @@ Item {
         finished_task_num: genshin.finishedTaskNum
         is_extra_task_reward_received: genshin.isExtraTaskRewardReceived
         remain_resin_discount_num: genshin.remainResinDiscountNum
+        current_expedition_num: genshin.currentExpeditionNum
+        max_expedition_num: genshin.maxExpeditionNum
+        expeditions: genshin.expeditions
         transformer_obtained: genshin.transformerObtained
         transformer_recovery_time: genshin.transformerRecoveryTime
     }

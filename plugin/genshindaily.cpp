@@ -16,6 +16,7 @@ GenshinDaily::GenshinDaily(QObject *parent) : GenshinDaily("","", CN, parent) {
 
 GenshinDaily::GenshinDaily(QString uid, QString cookie, Server server, QObject *parent)
 	: QObject(parent), m_uid(uid), m_cookie(cookie), m_server(server){
+		this->m_updateTime = QDateTime::currentDateTime().toTime_t();
 }
 
 GenshinDaily::~GenshinDaily() {};
@@ -47,6 +48,7 @@ void GenshinDaily::refresh() {
                 return;
             }
             QByteArray bytes = reply->readAll();
+			// qDebug() << bytes;
             parseResponseJSON(bytes);
         });
 	QNetworkRequest* request = new QNetworkRequest();
@@ -79,28 +81,35 @@ void GenshinDaily::parseResponseJSON(QByteArray& response) {
 		qDebug() << "Could not parse response: expected object as root JSON object";
 		return;
 	}
-	QJsonObject root = doc.object();
-	this->m_currentResin =  root["data"].toObject()["current_resin"].toInt();
+	QJsonObject data = doc.object()["data"].toObject();
+	this->m_currentResin =  data["current_resin"].toInt();
 	emit this->currentResinChanged(this->m_currentResin);
-	this->m_resinRecoveryTime = root["data"].toObject()["resin_recovery_time"].toString().toInt();
+	this->m_resinRecoveryTime = data["resin_recovery_time"].toString().toInt();
 	emit this->resinRecoveryTimeChanged(this->m_resinRecoveryTime);
-	this->m_currentHomeCoin = root["data"].toObject()["current_home_coin"].toInt();
+	this->m_currentHomeCoin = data["current_home_coin"].toInt();
 	emit this->currentHomeCoinChanged(this->m_currentHomeCoin);
-	this->m_maxHomeCoin = root["data"].toObject()["max_home_coin"].toInt();
+	this->m_maxHomeCoin = data["max_home_coin"].toInt();
 	emit this->maxHomeCoinChanged(this->m_maxHomeCoin);
-	this->m_homeCoinRecoveryTime = root["data"].toObject()["home_coin_recovery_time"].toString().toInt();
+	this->m_homeCoinRecoveryTime = data["home_coin_recovery_time"].toString().toInt();
 	emit this->homeCoinRecoveryTimeChanged(this->m_homeCoinRecoveryTime);
-	this->m_finishedTaskNum = root["data"].toObject()["finished_task_num"].toInt();
+	this->m_finishedTaskNum = data["finished_task_num"].toInt();
 	emit this->finishedTaskNumChanged(this->m_finishedTaskNum);
-	this->m_isExtraTaskRewardReceived = root["data"].toObject()["is_extra_task_reward_received"].toBool();
+	this->m_isExtraTaskRewardReceived = data["is_extra_task_reward_received"].toBool();
 	emit this->isExtraTaskRewardReceivedChanged(this->m_isExtraTaskRewardReceived);
-	this->m_remainResinDiscountNum = root["data"].toObject()["remain_resin_discount_num"].toInt();
+	this->m_remainResinDiscountNum = data["remain_resin_discount_num"].toInt();
 	emit this->remainResinDiscountNumChanged(this->m_remainResinDiscountNum);
-	this->m_transformerObtained = root["data"].toObject()["transformer"].toObject()["obtained"].toBool();
+	this->m_currentExpeditionNum = data["current_expedition_num"].toInt();
+	emit this->currentExpeditionNumChanged(this->m_currentExpeditionNum);
+	this->m_maxExpeditionNum = data["max_expedition_num"].toInt();
+	emit this->maxExpeditionNumChanged(this->m_maxExpeditionNum);
+	this->m_expeditions = data["expeditions"].toArray().toVariantList();
+	emit this->expeditionsChanged(this->m_expeditions);
+
+	this->m_transformerObtained = data["transformer"].toObject()["obtained"].toBool();
 	emit this->transformerObtainedChanged(this->m_transformerObtained);
 
 	if(this->m_transformerObtained){
-		QJsonObject transformerRecoveryTimeOBJ = root["data"].toObject()["transformer"].toObject()["recovery_time"].toObject();
+		QJsonObject transformerRecoveryTimeOBJ = data["transformer"].toObject()["recovery_time"].toObject();
 		if(transformerRecoveryTimeOBJ["reached"].toBool()){
 			this->m_transformerRecoveryTime = 0;
 		} else {
@@ -108,5 +117,8 @@ void GenshinDaily::parseResponseJSON(QByteArray& response) {
 		}
 		emit this->transformerRecoveryTimeChanged(this->m_transformerRecoveryTime);
 	}
+	
+	this->m_updateTime = QDateTime::currentDateTime().toTime_t();
+	emit this->updateTimeChanged(this->m_updateTime);
 
 }
