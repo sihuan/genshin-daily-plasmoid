@@ -69,6 +69,7 @@ Item {
 
     Plasmoid.compactRepresentation: GenshinIcon {
         current_resin: genshin.currentResin
+        refresh: genshin.refresh
     }
 
     Plasmoid.toolTipMainText: `完全恢复：${Utils.maxTime(genshin.resinRecoveryTime)}`

@@ -9,6 +9,7 @@ import org.kde.plasma.private.genshindaily 1.0
 Item{
     id: iconRoot
     property string current_resin
+	property var refresh
 
     Layout.minimumWidth: PlasmaCore.Units.gridUnit * 2
 
@@ -24,6 +25,7 @@ Item{
     MouseArea {
 		anchors.fill: parent
 		onClicked: plasmoid.expanded = !plasmoid.expanded
+		onDoubleClicked: refresh()
 	}
     
 }
