@@ -27,6 +27,8 @@ Item {
         proxyType: plasmoid.configuration.proxyType
         proxyHost: plasmoid.configuration.proxyHost
         proxyPort: plasmoid.configuration.proxyPort
+        proxyUsername: plasmoid.configuration.proxyUsername
+        proxyPassword: plasmoid.configuration.proxyPassword
 
         onUidChanged: {
             refresh()
@@ -47,6 +49,12 @@ Item {
             refresh()
         }
         onProxyPortChanged: {
+            refresh()
+        }
+        onProxyUsernameChanged: {
+            refresh()
+        }
+        onProxyPasswordChanged: {
             refresh()
         }
     }

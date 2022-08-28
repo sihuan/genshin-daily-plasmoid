@@ -53,10 +53,13 @@ public:
 	Q_PROPERTY(QString uid MEMBER m_uid NOTIFY uidChanged)
 	Q_PROPERTY(QString cookie MEMBER m_cookie NOTIFY cookieChanged)
 	Q_PROPERTY(Server server MEMBER m_server NOTIFY serverChanged)
+
 	Q_PROPERTY(ProxyEnale proxyEnable MEMBER m_proxy_enable NOTIFY proxyEnableChanged)
 	Q_PROPERTY(ProxyType proxyType MEMBER m_proxy_type NOTIFY proxyTypeChanged)
 	Q_PROPERTY(QString proxyHost MEMBER m_proxy_host NOTIFY proxyHostChanged)
 	Q_PROPERTY(int proxyPort MEMBER m_proxy_port NOTIFY proxyPortChanged)
+	Q_PROPERTY(QString proxyUsername MEMBER m_proxy_username NOTIFY proxyUsernameChanged)
+	Q_PROPERTY(QString proxyPassword MEMBER m_proxy_password NOTIFY proxyPasswordChanged)
 
 	Q_PROPERTY(int currentResin READ currentResin NOTIFY currentResinChanged STORED false)
 	Q_PROPERTY(int resinRecoveryTime READ resinRecoveryTime NOTIFY resinRecoveryTimeChanged STORED false)
@@ -95,10 +98,13 @@ signals:
 	void uidChanged();
 	void cookieChanged(QString newCookie);
 	void serverChanged(Server newServer);
+
 	void proxyEnableChanged(ProxyEnale newProxyEnable);
 	void proxyTypeChanged(ProxyType newProxyType);
 	void proxyHostChanged(QString newProxyHost);
 	void proxyPortChanged(int newProxyPort);
+	void proxyUsernameChanged(QString newProxyUsername);
+	void proxyPasswordChanged(QString newProxyPassword);
 
 	void currentResinChanged(int newCurrentResin);
 	void resinRecoveryTimeChanged(int newResinRecoveryTime);
@@ -127,10 +133,13 @@ private:
 	QString m_uid;
 	QString m_cookie;
 	Server m_server;
+
 	ProxyEnale m_proxy_enable;
 	ProxyType m_proxy_type;
 	QString m_proxy_host;
 	int m_proxy_port;
+	QString m_proxy_username;
+	QString m_proxy_password;
 
 	int m_currentResin;
 	int m_resinRecoveryTime;

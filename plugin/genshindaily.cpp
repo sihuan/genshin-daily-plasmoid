@@ -36,7 +36,7 @@ GenshinDaily::GenshinDaily(const GenshinDaily& other)
 // }
 
 void GenshinDaily::refresh() {
-	qDebug() << "Refreshin……";
+	qDebug() << "Refreshing……";
 	qDebug() << "UID: " << this->m_uid;
 	qDebug() << "Cookie: " << this->m_cookie;
 	qDebug() << "Server: " << serverMap[this->m_server];
@@ -52,23 +52,32 @@ void GenshinDaily::refresh() {
             parseResponseJSON(bytes);
         });
 	QNetworkRequest* request = new QNetworkRequest();
+
 	if (this->m_proxy_enable == MANUAL) {
 		qDebug() << "Manual Proxy";
+
 		QNetworkProxy* proxy = new QNetworkProxy();
-		switch(this->m_proxy_type){
+
+		switch (this->m_proxy_type) {
 			case HTTP:
 				proxy->setType(QNetworkProxy::HttpProxy);
 				break;
 			case SOCKS5:
 				proxy->setType(QNetworkProxy::Socks5Proxy);
 		}
+
 		proxy->setHostName(this->m_proxy_host);
 		proxy->setPort(this->m_proxy_port);
+		if (!this->m_proxy_username.isEmpty()) proxy->setUser(this->m_proxy_username);
+		if (!this->m_proxy_password.isEmpty()) proxy->setPassword(this->m_proxy_password);
+
 		qDebug() << proxy->type();
 		qDebug() << proxy->hostName();
 		qDebug() << proxy->port();
+
 		manager->setProxy(*proxy);
 	}
+
 	request->setUrl(QUrl((isCNServer() ? apiCN : apiGlobal) + "?" + getQuery()));
 	request->setRawHeader("x-rpc-app_version",  isCNServer() ? "2.26.1" : "2.9.1");
 	request->setRawHeader("x-rpc-client_type", isCNServer() ? "5" : "2");
