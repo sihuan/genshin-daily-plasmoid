@@ -24,4 +24,19 @@
             <default>Hello World</default>
         </entry>
     </group>
+    <group name="Config">
+        <entry name="proxyEnable" type="Enum">
+            <label>0 = 不使用代理, 1 = 系统代理, 2 = 手动代理</label>
+            <default>0</default>
+        </entry>
+        <entry name = "proxyType" type="Enum">
+            <label>0 = http, 1 = socks5</label>
+            <default>0</default>
+        <entry name="proxyHost" type="String">
+            <default>127.0.0.1</default>
+        </entry>
+        <entry name="proxyPort" type="Int">
+            <default>8080</default>
+        </entry>
+    </group>
 </kcfg>

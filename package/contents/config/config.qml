@@ -12,4 +12,9 @@ ConfigModel {
         icon: "configure"
         source: "configConfiguration.qml"
     }
+    ConfigCategory {
+        name: "代理"
+        icon: "configure"
+        source: "configProxy.qml"
+    }
 }

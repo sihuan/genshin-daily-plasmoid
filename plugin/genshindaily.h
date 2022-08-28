@@ -14,6 +14,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QNetworkProxy>
 #include <QRandomGenerator>
 
 
@@ -23,6 +24,8 @@ const QString apiGlobal = "https://bbs-api-os.hoyolab.com/game_record/app/genshi
 class GenshinDaily : public QObject {
 	Q_OBJECT
 	Q_ENUMS(Server)
+	Q_ENUMS(ProxyEnale)
+	Q_ENUMS(ProxyType)
 public:
     enum Server {
     	CN,
@@ -33,6 +36,15 @@ public:
     	SAR,
     	UNSET
     };
+	enum ProxyEnale{
+		N,
+		SYSTEM,
+		MANUAL,
+	};
+	enum ProxyType {
+		HTTP,
+		SOCKS5,
+	};
 	GenshinDaily(QObject *parent = nullptr);
 	GenshinDaily(QString uid, QString cookie, Server server, QObject *parent = nullptr);
     ~GenshinDaily() override;
@@ -41,6 +53,10 @@ public:
 	Q_PROPERTY(QString uid MEMBER m_uid NOTIFY uidChanged)
 	Q_PROPERTY(QString cookie MEMBER m_cookie NOTIFY cookieChanged)
 	Q_PROPERTY(Server server MEMBER m_server NOTIFY serverChanged)
+	Q_PROPERTY(ProxyEnale proxyEnable MEMBER m_proxy_enable NOTIFY proxyEnableChanged)
+	Q_PROPERTY(ProxyType proxyType MEMBER m_proxy_type NOTIFY proxyTypeChanged)
+	Q_PROPERTY(QString proxyHost MEMBER m_proxy_host NOTIFY proxyHostChanged)
+	Q_PROPERTY(int proxyPort MEMBER m_proxy_port NOTIFY proxyPortChanged)
 
 	Q_PROPERTY(int currentResin READ currentResin NOTIFY currentResinChanged STORED false)
 	Q_PROPERTY(int resinRecoveryTime READ resinRecoveryTime NOTIFY resinRecoveryTimeChanged STORED false)
@@ -79,6 +95,10 @@ signals:
 	void uidChanged();
 	void cookieChanged(QString newCookie);
 	void serverChanged(Server newServer);
+	void proxyEnableChanged(ProxyEnale newProxyEnable);
+	void proxyTypeChanged(ProxyType newProxyType);
+	void proxyHostChanged(QString newProxyHost);
+	void proxyPortChanged(int newProxyPort);
 
 	void currentResinChanged(int newCurrentResin);
 	void resinRecoveryTimeChanged(int newResinRecoveryTime);
@@ -107,6 +127,10 @@ private:
 	QString m_uid;
 	QString m_cookie;
 	Server m_server;
+	ProxyEnale m_proxy_enable;
+	ProxyType m_proxy_type;
+	QString m_proxy_host;
+	int m_proxy_port;
 
 	int m_currentResin;
 	int m_resinRecoveryTime;

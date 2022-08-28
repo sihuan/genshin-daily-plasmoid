@@ -23,20 +23,32 @@ Item {
         uid: plasmoid.configuration.uid
         cookie: plasmoid.configuration.cookie
         server: plasmoid.configuration.server
+        proxyEnable: plasmoid.configuration.proxyEnable
+        proxyType: plasmoid.configuration.proxyType
+        proxyHost: plasmoid.configuration.proxyHost
+        proxyPort: plasmoid.configuration.proxyPort
 
         onUidChanged: {
             refresh()
         }
-
         onCookieChanged: {
             refresh()
         }
-
         onServerChanged: {
             refresh()
         }
-
-
+        onProxyEnableChanged: {
+            refresh()
+        }
+        onProxyTypeChanged: {
+            refresh()
+        }
+        onProxyHostChanged: {
+            refresh()
+        }
+        onProxyPortChanged: {
+            refresh()
+        }
     }
 
     Timer {

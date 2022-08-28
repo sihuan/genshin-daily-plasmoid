@@ -52,6 +52,23 @@ void GenshinDaily::refresh() {
             parseResponseJSON(bytes);
         });
 	QNetworkRequest* request = new QNetworkRequest();
+	if (this->m_proxy_enable == MANUAL) {
+		qDebug() << "Manual Proxy";
+		QNetworkProxy* proxy = new QNetworkProxy();
+		switch(this->m_proxy_type){
+			case HTTP:
+				proxy->setType(QNetworkProxy::HttpProxy);
+				break;
+			case SOCKS5:
+				proxy->setType(QNetworkProxy::Socks5Proxy);
+		}
+		proxy->setHostName(this->m_proxy_host);
+		proxy->setPort(this->m_proxy_port);
+		qDebug() << proxy->type();
+		qDebug() << proxy->hostName();
+		qDebug() << proxy->port();
+		manager->setProxy(*proxy);
+	}
 	request->setUrl(QUrl((isCNServer() ? apiCN : apiGlobal) + "?" + getQuery()));
 	request->setRawHeader("x-rpc-app_version",  isCNServer() ? "2.26.1" : "2.9.1");
 	request->setRawHeader("x-rpc-client_type", isCNServer() ? "5" : "2");
