@@ -25,7 +25,7 @@ Kirigami.FormLayout {
     }
 
     PlasmaComponents3.Label {
-        text: "不会弄，请 pr"
+        text: "不会弄，请 pr，下面应该是从系统获取代理的"
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         visible: proxy_enable.currentIndex == 1
@@ -37,7 +37,8 @@ Kirigami.FormLayout {
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         model: ["HTTP", "SOCKS5"]
-        visible: proxy_enable.currentIndex > 1
+        visible: proxy_enable.currentIndex > 0
+        enabled: proxy_enable.currentIndex > 1
     }
 
     TextField {
@@ -45,7 +46,8 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: "代理地址："
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
-        visible: proxy_enable.currentIndex > 1
+        visible: proxy_enable.currentIndex > 0
+        enabled: proxy_enable.currentIndex > 1
     }
 
     SpinBox {
@@ -55,6 +57,7 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: "代理端口："
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
-        visible: proxy_enable.currentIndex > 1
+        visible: proxy_enable.currentIndex > 0
+        enabled: proxy_enable.currentIndex > 1
     }
 }
