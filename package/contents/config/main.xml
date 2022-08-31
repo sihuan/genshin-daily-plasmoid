@@ -38,5 +38,11 @@
         <entry name="proxyPort" type="Int">
             <default>8080</default>
         </entry>
+        <entry name="proxyUsername" type="String">
+            <default></default>
+        </entry> 
+        <entry name="proxyPassword" type="String">
+            <default></default>
+        </entry> 
     </group>
 </kcfg>

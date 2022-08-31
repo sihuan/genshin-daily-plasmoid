@@ -15,6 +15,8 @@ Kirigami.FormLayout {
     property alias cfg_proxyType: proxy_type.currentIndex
     property alias cfg_proxyHost: proxy_host.text
     property alias cfg_proxyPort: proxy_port.value
+    property alias cfg_proxyUsername: proxy_username.text
+    property alias cfg_proxyPassword: proxy_password.text
 
     ComboBox {
         id: proxy_enable
@@ -33,7 +35,7 @@ Kirigami.FormLayout {
 
     ComboBox {
         id : proxy_type
-        Kirigami.FormData.label: "代理类型："
+        Kirigami.FormData.label: "类型："
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         model: ["HTTP", "SOCKS5"]
@@ -43,7 +45,7 @@ Kirigami.FormLayout {
 
     TextField {
         id: proxy_host
-        Kirigami.FormData.label: "代理地址："
+        Kirigami.FormData.label: "主机："
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         visible: proxy_enable.currentIndex > 0
@@ -54,7 +56,25 @@ Kirigami.FormLayout {
         id: proxy_port
         from: 0
         to: 65535
-        Kirigami.FormData.label: "代理端口："
+        Kirigami.FormData.label: "端口："
+        Layout.fillWidth: true
+        Layout.minimumWidth: Kirigami.Units.gridUnit * 14
+        visible: proxy_enable.currentIndex > 0
+        enabled: proxy_enable.currentIndex > 1
+    }
+
+    TextField {
+        id: proxy_username
+        Kirigami.FormData.label: "用户名："
+        Layout.fillWidth: true
+        Layout.minimumWidth: Kirigami.Units.gridUnit * 14
+        visible: proxy_enable.currentIndex > 0
+        enabled: proxy_enable.currentIndex > 1
+    }
+
+    TextField {
+        id: proxy_password
+        Kirigami.FormData.label: "密码："
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         visible: proxy_enable.currentIndex > 0
