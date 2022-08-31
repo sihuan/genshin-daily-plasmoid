@@ -69,7 +69,7 @@ Kirigami.FormLayout {
         Layout.fillWidth: true
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         visible: proxy_enable.currentIndex > 0
-        enabled: proxy_enable.currentIndex > 0
+        enabled: proxy_enable.currentIndex > 1
     }
 
     TextField {
